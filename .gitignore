@@ -1,0 +1,44 @@
+# === WordPress ===
+html/wp-content/uploads/
+html/wp-content/cache/
+html/wp-content/upgrade/
+html/wp-config.php
+html/.htaccess
+html/index.php
+
+# Ignorer tout sauf le wp-content si tu veux versionner tes thèmes/plugins custom
+# html/*
+# !html/wp-content/
+# html/wp-content/*
+# !html/wp-content/themes/
+# !html/wp-content/plugins/
+
+# === MySQL volume ===
+data/mysql/
+
+# === Docker ===
+*.log
+docker-compose.override.yml
+.env
+
+# === Node/npm si jamais tu ajoutes des outils front plus tard ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# === PHPStorm / VSCode ===
+.idea/
+.vscode/
+
+# === macOS ===
+.DS_Store
+
+# === Logs divers ===
+*.log
+*.sql
+*.sqlite
+
+# === Autres fichiers temporaires ===
+*.bak
+*.tmp
