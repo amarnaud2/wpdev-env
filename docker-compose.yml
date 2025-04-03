@@ -1,0 +1,53 @@
+services:
+  wordpress:
+    platform: linux/arm64
+    build: ./php
+    container_name: wp_dev
+    env_file:
+      - .env
+    volumes:
+      - ./html:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    depends_on:
+      - db
+    ports:
+      - "8000:80"
+
+  db:
+    platform: linux/arm64
+    image: mysql:8
+    container_name: mysql_dev
+    command: --lower_case_table_names=2
+    env_file:
+      - .env
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma_dev
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - "8025:8025"  # Interface Web : http://localhost:8025
+      - "1025:1025"  # SMTP capté par MailHog
