@@ -14,7 +14,7 @@ html/index.php
 # !html/wp-content/plugins/
 
 # === MySQL volume ===
-data/mysql/
+# data/mysql/
 
 # === Docker ===
 *.log
